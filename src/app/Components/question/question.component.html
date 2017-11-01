@@ -5,18 +5,49 @@
 	<option *ngFor = "let question of questions" value=""> {{ question.Text }} </option>
 </select> -->
 
-<ul *ngFor = "let question of questions" class="questions">
-	<li> 
-		<div class="question">
-			<span class="qid">
-				{{ question.q_id }}
-			</span>
-			<span class="qtext">
-				{{question.q_text}}
-			</span>
-			<span>
-				<input type="radio" >
-			</span>
+
+<div class="container">
+	<hr class="divider">
+	<form #f="ngForm">
+		<div class="form-group" *ngFor = "let question of questions" class="questions">
+			<div class="question">
+				<div>
+					<!-- <span class="qid">
+						{{ question.q_id }}
+					</span> -->
+					<span class="qtext">
+						{{question.q_text}}
+					</span>
+				</div>
+				<div>
+					<div *ngIf="question.q_type == 'radio' ">
+
+						<div *ngFor = "let option of question.q_options" >
+							
+							<input  type="radio" [value]="option.opt_value" id="options_{{question.q_id}}_{{option.opt_value}}" name="options_{{question.q_id}}" [(ngModel)]="option.data_model" > {{option.opt_text}}
+						</div>
+
+					</div>
+
+					<div *ngIf="question.q_type == 'textarea' ">
+						<textarea name="" id="" cols="30" rows="10"></textarea>
+					</div>
+					<div *ngIf="question.q_type == 'text' ">
+						<input type="text" class="form-control">
+					</div>
+					<div *ngIf="question.q_type == 'dropdown' ">
+						<select name="" id="">
+							<option value="" *ngFor = "let option of question.q_options" > {{option.opt_text}} </option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<hr class="divider">
 		</div>
-	</li>
-</ul> 
+		<div class="">
+			{{ Q2 }}
+		</div>
+
+	 </form>
+</div>
+

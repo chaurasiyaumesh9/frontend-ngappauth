@@ -3,49 +3,49 @@
 		"program_screening":{
 			"questions":[
 				{
-					"question_id":"Q1",
-					"Type": "Single",
-					"Question Text":"I would like to submit request for -",
-					"Answers": [
+					"q_id":"Q1",
+					"q_type": "dropdown",
+					"q_text":"I would like to submit request for -",
+					"q_answers": [
 						{
-							"question_id":"Q1_1",
-							"Text":"Installation of new software",
-							"Program":["P1"]
+							"id":"Q1_1",
+							"text":"Installation of new software",
+							"program":["P1"]
 						},
 						{
-							"question_id":"Q1_2",
-							"Text":"To request for temporary laptop",
-							"Program":["P2"]
+							"id":"Q1_2",
+							"text":"To request for temporary laptop",
+							"program":["P2"]
 						},
 						{
-							"question_id":"Q1_3",
-							"Text":"To change your workstation",
-							"Program":["P3"]
+							"id":"Q1_3",
+							"text":"To change your workstation",
+							"program":["P3"]
 						},
 						{
-							"question_id":"Q1_4",
-							"Text":"Internet related issue",
-							"Program":["P4"]
+							"id":"Q1_4",
+							"text":"Internet related issue",
+							"program":["P4"]
 						},
 						{
-							"question_id":"Q1_5",
-							"Text":"Request to get iOS devices, iPad, iPhone etc",
-							"Program":["P5"]
+							"id":"Q1_5",
+							"text":"Request to get iOS devices, iPad, iPhone etc",
+							"program":["P5"]
 						},
 						{
-							"question_id":"Q1_6",
-							"Text":"IP restriction domain related issues, blacklisting, whitelisting domain",
-							"Program":["P6"]
+							"id":"Q1_6",
+							"text":"IP restriction domain related issues, blacklisting, whitelisting domain",
+							"program":["P6"]
 						},
 						{
-							"question_id":"Q1_7",
-							"Text":"Need VPN access",
-							"Program":["P7"]
+							"id":"Q1_7",
+							"text":"Need VPN access",
+							"program":["P7"]
 						},
 						{
-							"question_id":"Q1_8",
-							"Text":"Lost question_id card, request for new question_id card",
-							"Program":["P8"]
+							"id":"Q1_8",
+							"text":"Lost id card, request for new id card",
+							"program":["P8"]
 						}
 					]
 				}
@@ -58,32 +58,36 @@
 					{
 						"q_id":"Q1",
 						"q_text":"Is this a new software?",
-						"q_type":"single",
-						"viviblse_on_load":true,
+						"q_type":"radio",
+						"visible_on_load":true,
 						"q_options":[
 							{
 								"opt_text":"Yes",
-								"opt_value":"1"
+								"opt_value":"1",
+								"data_model":"Q1"
 							},
 							{
 								"opt_text":"No",
-								"opt_value":"0"
+								"opt_value":"0",
+								"data_model":"Q1"
 							}
 						]
 					},{
 						"q_id":"Q2",
 						"q_text":"Do you need installation on your machine?",
-						"q_type":"single",
-						"viviblse_on_load":true,
+						"q_type":"radio",
+						"visible_on_load":true,
 						"q_options":[
 							{
 								"opt_text":"Yes",
 								"opt_value":"1",
+								"data_model":"Q2",
 								"associated_questions": [ "Q3" ]
-							},
+							},	
 							{
 								"opt_text":"No",
 								"opt_value":"0",
+								"data_model":"Q2",
 								"associated_questions": [ "Q7","Q8","Q9"  ]
 							}
 						]
@@ -91,15 +95,18 @@
 						"q_id":"Q3",
 						"q_text":"Is this business or desktop service request?",
 						"q_type":"dropdown",
+						"data_model":"Q2",
 						"q_options":[
 							{
 								"opt_text":"Desktop Service Request",
 								"opt_value":"1",
+								"data_model":"Q3",
 								"associated_questions": [ "Q4","Q5" ]
 							},
 							{
 								"opt_text":"Business Service Request",
 								"opt_value":"0",
+								"data_model":"Q3",
 								"associated_questions": [ "Q10","Q11","Q12","Q13" ]
 							}
 						]
@@ -110,14 +117,17 @@
 						"q_options":[
 							{
 								"opt_text":"Microsoft Excel",
+								"data_model":"Q4",
 								"opt_value":"2"
 							},
 							{
 								"opt_text":"WinSCP",
+								"data_model":"Q4",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"FileZilla Client",
+								"data_model":"Q4",
 								"opt_value":"0"
 							}
 						]
@@ -128,18 +138,21 @@
 					},{
 						"q_id":"Q6",
 						"q_text":"Add a link to the software",
-						"q_type":"textbox"
+						"q_type":"text"
 					},{
 						"q_id":"Q7",
 						"q_text":"Is this a service provided by someone else, you would like to use?",
-						"q_type":"single",
+						"q_type":"radio",
+						"data_model":"Q2",
 						"q_options":[
 							{
 								"opt_text":"Yes",
+								"data_model":"Q7",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"No",
+								"data_model":"Q7",
 								"opt_value":"0"
 							}
 						]
@@ -147,59 +160,70 @@
 						"q_id":"Q8",
 						"q_text":"Is this software as a service or is it going to be inside anthem?",
 						"q_type":"dropdown",
+						"data_model":"Q2",
 						"q_options":[
 							{
 								"opt_text":"Software as a service",
+								"data_model":"Q8",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"Going to be inside anthem",
+								"data_model":"Q8",
 								"opt_value":"0"
 							}
 						]
 					},{
 						"q_id":"Q9",
+						"data_model":"Q2",
 						"q_text":"What is the name of the platform/vendor?",
 						"q_type":"dropdown",
 						"q_options":[
 							{
 								"opt_text":"Linux/Ubuntu",
+								"data_model":"Q9",
 								"opt_value":"2"
 							},
 							{
 								"opt_text":"Window",
+								"data_model":"Q9",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"MacOS",
+								"data_model":"Q9",
 								"opt_value":"0"
 							}
 						]
 					},{
 						"q_id":"Q10",
 						"q_text":"Is this a service provided by an external party, you would like to use?",
-						"q_type":"single",
+						"q_type":"radio",
 						"q_options":[
 							{
 								"opt_text":"Yes",
+								"data_model":"Q10",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"No",
+								"data_model":"Q10",
 								"opt_value":"0"
 							}
 						]
 					},{
 						"q_id":"Q11",
 						"q_text":"Is this software as service? (example Salesforce)",
-						"q_type":"single",
+						"q_type":"radio",
 						"q_options":[
 							{
 								"opt_text":"Yes",
+								"data_model":"Q11",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"No",
+								"data_model":"Q11",
 								"opt_value":"0"
 							}
 						]
@@ -210,28 +234,33 @@
 						"q_options":[
 							{
 								"opt_text":"Microsoft Visual Studio",
+								"data_model":"Q12",
 								"opt_value":"2"
 							},
 							{
 								"opt_text":"Oracle SuiteCommerce",
+								"data_model":"Q12",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"Shopify",
+								"data_model":"Q12",
 								"opt_value":"0"
 							}
 						]
 					},{
 						"q_id":"Q13",
 						"q_text":"Is this going to be provided by anthem?",
-						"q_type":"single",
+						"q_type":"radio",
 						"q_options":[
 							{
 								"opt_text":"Yes",
+								"data_model":"Q13",
 								"opt_value":"1"
 							},
 							{
 								"opt_text":"No",
+								"data_model":"Q13",
 								"opt_value":"0"
 							}
 						]
