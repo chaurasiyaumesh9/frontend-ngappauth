@@ -1,0 +1,22 @@
+<!-- 
+<label for="choose-response"> <input type="radio">I would like to submit a request for - </label>
+
+<select >
+	<option *ngFor = "let question of questions" value=""> {{ question.Text }} </option>
+</select> -->
+
+<ul *ngFor = "let question of questions" class="questions">
+	<li> 
+		<div class="question">
+			<span class="qid">
+				{{ question.q_id }}
+			</span>
+			<span class="qtext">
+				{{question.q_text}}
+			</span>
+			<span>
+				<input type="radio" >
+			</span>
+		</div>
+	</li>
+</ul> 

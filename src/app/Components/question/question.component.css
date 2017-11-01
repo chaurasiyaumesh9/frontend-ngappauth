@@ -1,0 +1,22 @@
+.questions{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	max-width: 900px;
+}
+.questions li{
+	border-bottom:1px solid #eaeaea;
+	padding:15px;
+}
+
+.qid{
+	color: #369;
+  	font-family: Arial, Helvetica, sans-serif;
+  	font-size: 18px;
+}
+
+.qtext{
+	color:#1d1c1c;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+}
