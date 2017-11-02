@@ -1,11 +1,24 @@
 import { TestBed, async } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { QuestionComponent } from './Components/question/question.component';
+import { QuestionService } from './Services/question.service';
+
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        QuestionComponent
       ],
+      imports: [
+        HttpModule,
+        FormsModule,
+        ReactiveFormsModule    
+      ],
+      providers: [ QuestionService ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
