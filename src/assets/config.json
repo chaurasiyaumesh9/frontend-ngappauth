@@ -14,7 +14,7 @@
             ],
             "q_text": "Is this a new software?",
             "q_type": "radio",
-            "scope": [ "all" ]
+            "scope": [ "global" ]
         },
         {
             "q_id": "Q2",
@@ -40,7 +40,7 @@
             ],
             "q_text": "Do you need installation on your machine?",
             "q_type": "radio",
-            "scope": [ "all" ]
+            "scope": [ "global" ]
         },
         {
             "q_id": "Q3",
@@ -68,7 +68,7 @@
             ],
             "q_text": "Is this business or desktop service request?",
             "q_type": "dropdown",
-            "program": ["P1"],
+            "program": ["P1","P4","P3"],
             "scope": [ "limited" ]
         },
         {
@@ -103,7 +103,7 @@
             "q_id": "Q6",
             "q_text": "Add a link to the software",
             "q_type": "text",
-            "scope": [ "all" ]
+            "scope": [ "global" ]
         },
         {
             "q_id": "Q7",
