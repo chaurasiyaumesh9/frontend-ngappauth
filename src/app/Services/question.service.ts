@@ -6,28 +6,74 @@ import {
     Response
 } from '@angular/http';
 import 'rxjs/add/operator/map';
+import "rxjs/add/operator/mergeMap";
+import "rxjs/add/operator/filter";
+
+
 
 
 @Injectable()
 export class QuestionService {
     private _url: string = "/assets/config.json";
     constructor(private _http: Http) {}
+
     getAllQuestions() {
         return this._http.get(this._url).map((response: Response) => {
             let _response = response.json();
             //console.log('_response : ',_response.configuration.programs[0]['questions']);
-            return _response.configuration.programs[0]['questions'];
+            return _response.questions;
             //response.json();
             //return [];
         });
     }
-    fetParentQuestions() {
+
+    getVisibleQuestion() {
+        return [];
+    }
+
+    getQuestionsByProgramId( _pid: string ){
+        if (!_pid) {return null;};
+         return this._http.get(this._url).map((response: Response) => {
+            let _response = response.json();
+            //console.log('_response : ',_response.configuration.programs[0]['questions']);
+            return _response.questions.filter(function(question){
+                return question.program && question.program.indexOf(_pid) >= 0  ;
+            });
+        });
+    }
+
+    getQuestionsMultipleProgramIds( _ids: Array<string> ){
+        if (!_ids || _ids.length == 0) {return null;};
+        let questions = [];
+        
+        return questions;
+    }
+
+    getQuestionByScope( _scope: string ){
+        if (!_scope) {return null;};
         return this._http.get(this._url).map((response: Response) => {
             let _response = response.json();
             //console.log('_response : ',_response.configuration.programs[0]['questions']);
-            return _response.configuration.program_screening['questions'][0]['answers'];
-            //response.json();
-            //return [];
+            return _response.questions.filter(function(question){
+                return question.scope && question.scope == _scope;
+            });
+        });
+    }
+
+    getProgram( _questionid: string, optionid: string){
+        if (!_questionid || !optionid ) {return null;};
+        return this._http.get(this._url).map((response: Response) => {
+            let _response = response.json();
+            //console.log('_response : ',_response.configuration.programs[0]['questions']);
+            let question = _response.questions.filter(function(q){
+                return q.q_id == _questionid;
+            });
+
+            let option = question[0].q_options.filter(function(opt){
+                return opt.opt_value == optionid;
+            });
+            //console.log('option.program : ',option[0].program);
+            return option[0].program;
         });
     }
 }

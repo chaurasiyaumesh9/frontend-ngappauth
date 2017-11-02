@@ -19,6 +19,42 @@
 
 .qtext{
 	color:#1d1c1c;
-	font-size: 16px;
+	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
+}
+.left-part{
+	float: left;
+}
+.right-part{
+	float: right;
+}
+.clearfix{
+	clear: both
+}
+.wrapper{
+	margin-top:25px;
+}
+.top-strip{
+	padding: 12px;
+}
+.wrapper .top-strip .fa.fa-plus{
+	display: none;
+}
+
+.wrapper.collapsed .top-strip .fa.fa-plus{
+	display: inline-block;
+}
+
+.wrapper.collapsed .top-strip .fa.fa-minus{
+	display: none;
+}
+.wrapper .content{
+	transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	-moz-transition:all 0.5s;
+}
+
+.wrapper.collapsed .content{
+	max-height: 0;
+	overflow: hidden;
 }

@@ -1,3 +1,60 @@
+
+
+<div class="container">
+	<div class="wrapper {{collapsed?'collapsed':''}}" >
+		<div class="top-strip">
+			<div class="title left-part">
+				<h6> I would like to submit a request for - </h6>
+			</div>
+			<div class="right-part">
+				<a href="#" (click)="toggleCollapse($event)"> <i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus" aria-hidden="true"></i></a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="content">
+			<form #f="ngForm">
+				<table class="table">
+					<tr *ngFor = "let question of questions">
+						<td>
+							<div class="question">
+								<div class="left-part">
+									<span class="qid">
+										{{question.q_id}}
+									</span>
+									<span class="qtext">
+										 {{question.q_text}}
+									</span>
+								</div>
+								<div class="right-part">
+									<div *ngIf="question.q_type == 'radio'">
+										<span *ngFor = "let option of question.q_options">
+											<input (change)="loadDependentQuestions($event)" type="radio" [value]="option.opt_value" id="options_{{question.q_id}}_{{option.opt_value}}" name="options_{{question.q_id}}" > {{option.opt_text}}
+										</span>
+									</div>
+									
+									<div *ngIf="question.q_type == 'textarea' ">
+										<textarea name="" id="" cols="30" rows="10"></textarea>
+									</div>
+									<div *ngIf="question.q_type == 'text' ">
+										<input type="text" class="form-control">
+									</div>
+									<div *ngIf="question.q_type == 'dropdown' ">
+										<select name="options_{{question.q_id}}" id="options_{{question.q_id}}" (change)="loadDependentQuestions($event)">
+											<option [value]="option.opt_value" *ngFor = "let option of question.q_options" > {{option.opt_text}} </option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		
+	</div>
+	
+</div>
+
 <!-- 
 <label for="choose-response"> <input type="radio">I would like to submit a request for - </label>
 
@@ -5,16 +62,13 @@
 	<option *ngFor = "let question of questions" value=""> {{ question.Text }} </option>
 </select> -->
 
-
+<!-- 
 <div class="container">
 	<hr class="divider">
 	<form #f="ngForm">
 		<div class="form-group" *ngFor = "let question of questions" class="questions">
 			<div class="question">
 				<div>
-					<!-- <span class="qid">
-						{{ question.q_id }}
-					</span> -->
 					<span class="qtext">
 						{{question.q_text}}
 					</span>
@@ -51,3 +105,6 @@
 	 </form>
 </div>
 
+ -->
+
+ <div class="container"></div>
