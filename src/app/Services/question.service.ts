@@ -69,9 +69,12 @@ export class QuestionService {
                 return q.q_id == _questionid;
             });
 
+            if (question.length == 0 ) { return null; };
+
             let option = question[0].q_options.filter(function(opt){
                 return opt.opt_value == optionid;
             });
+            if (option.length == 0 ) { return null; };
             //console.log('option.program : ',option[0].program);
             return option[0].program;
         });

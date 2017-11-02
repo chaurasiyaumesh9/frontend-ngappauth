@@ -36,7 +36,7 @@ export class QuestionComponent implements OnInit {
       }
       if (question_id && answer_id) {
         this._questionService.getProgram(question_id,answer_id).subscribe(programs => {
-          if(programs && programs.length > 0 ){
+          if( programs && programs.length > 0 ){
             this._questionService.getQuestionsByProgramId(programs[0]).subscribe(questions => {
             //  console.log('questions :',questions);
               this.questions = this.globalQuestions.concat(questions);
