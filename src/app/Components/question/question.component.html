@@ -1,5 +1,25 @@
 
-
+<!-- <div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th> Question ID </th>
+				<th> Response Value </th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor = "let response of responses">
+				<td>
+					{{response.q_id}}
+				</td>
+				<td>
+					{{response.response}}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div> -->
+<hr class="divder">
 <div class="container">
 	<div class="wrapper {{collapsed?'collapsed':''}}" >
 		<div class="top-strip">
@@ -27,8 +47,11 @@
 								</div>
 								<div class="right-part">
 									<div *ngIf="question.q_type == 'radio'">
-										<span *ngFor = "let option of question.q_options">
-											<input (change)="loadDependentQuestions($event)" type="radio" [value]="option.opt_value" id="options_{{question.q_id}}_{{option.opt_value}}" name="options_{{question.q_id}}" > {{option.opt_text}}
+										<span *ngFor = "let option of question.q_options" class="response-text-wrapper">
+											<input (change)="loadDependentQuestions($event)" type="radio" [value]="option.opt_value" id="options_{{question.q_id}}_{{option.opt_value}}" name="options_{{question.q_id}}" >
+											<label for="options_{{question.q_id}}_{{option.opt_value}}">
+												<span class="response-text">{{option.opt_text}}</span>
+											</label>
 										</span>
 									</div>
 									
@@ -39,8 +62,8 @@
 										<input type="text" class="form-control">
 									</div>
 									<div *ngIf="question.q_type == 'dropdown' ">
-										<select name="options_{{question.q_id}}" id="options_{{question.q_id}}" (change)="loadDependentQuestions($event)">
-											<option [value]="option.opt_value" *ngFor = "let option of question.q_options" > {{option.opt_text}} </option>
+										<select name="options_{{question.q_id}}" id="options_{{question.q_id}}" (change)="loadDependentQuestions($event)" [ngModel] = savedReponses[question.q_id]>
+											<option [value]="option.opt_value" *ngFor = "let option of question.q_options" >  {{option.opt_text}} </option>
 										</select>
 									</div>
 								</div>

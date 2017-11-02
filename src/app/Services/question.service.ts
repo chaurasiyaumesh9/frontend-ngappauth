@@ -44,9 +44,20 @@ export class QuestionService {
 
     getQuestionsMultipleProgramIds( _ids: Array<string> ){
         if (!_ids || _ids.length == 0) {return null;};
-        let questions = [];
-        
-        return questions;
+         return this._http.get(this._url).map((response: Response) => {
+            let _response = response.json();
+            //console.log('_response : ',_response.configuration.programs[0]['questions']);
+            return _response.questions.filter(function(question){
+                //return question.program && question.program.indexOf(_pid) >= 0  ;
+                if ( question.program && question.program.length > 0 ) {
+                    for( let i=0;i<question.program.length; i++){
+                        let programid = question.program[i];
+                        if (_ids.indexOf(programid) >=0 ) {return true;};
+                        
+                    }
+                };
+            });
+        });
     }
 
     getQuestionByScope( _scope: string ){
