@@ -27,8 +27,9 @@
 								</div>
 								<div class="right-part">
 									<div *ngIf="question.q_type == 'radio'">
-										<span *ngFor = "let option of question.q_options">
-											<input (change)="loadDependentQuestions($event)" type="radio" [value]="option.opt_value" id="options_{{question.q_id}}_{{option.opt_value}}" name="options_{{question.q_id}}" > {{option.opt_text}}
+										<span *ngFor = "let option of question.q_options" class="response-text">
+											<input (change)="loadDependentQuestions($event)" type="radio" [value]="option.opt_value" id="options_{{question.q_id}}_{{option.opt_value}}" name="options_{{question.q_id}}" >
+											<label for="options_{{question.q_id}}_{{option.opt_value}}">{{option.opt_text}}</label>
 										</span>
 									</div>
 									
