@@ -20,7 +20,7 @@ describe('QuestionService', () => {
 
     service.getAllQuestions().subscribe((questions) => {
     	expect(questions).toBeTruthy();
-      	expect(questions.length).toBeGreaterThan(0);
+      expect(questions.length).toBeGreaterThan(0);
     });
   }));
 
@@ -28,16 +28,44 @@ describe('QuestionService', () => {
     expect(service).toBeTruthy();
     let questions = service.getVisibleQuestion();
     expect(questions).toBeTruthy();
-        expect(questions.length).toBeGreaterThan(0);
+    expect(questions.length).toBeGreaterThan(0);
 
   }));
 
   it('Testing getQuestionsByProgramId', inject([QuestionService], (service: QuestionService) => {
     expect(service).toBeTruthy();
-    let questions = service.getQuestionsByProgramId('P1');
-    expect(questions).toBeTruthy();
-        expect(questions.length).toBeGreaterThan(0);
 
+    service.getQuestionsByProgramId('P1').subscribe((questions) => {
+      expect(questions).toBeTruthy();
+      expect(questions.length).toBeGreaterThan(0);
+    });
   }));
+
+  it('Testing getQuestionByScope', inject([QuestionService], (service: QuestionService) => {
+    expect(service).toBeTruthy();
+
+    service.getQuestionByScope('global').subscribe((questions) => {
+      expect(questions).toBeTruthy();
+      expect(questions.length).toBeGreaterThan(0);
+    });
+  }));
+
+  it('Testing getProgram', inject([QuestionService], (service: QuestionService) => {
+    expect(service).toBeTruthy();
+
+    service.getProgram("Q2","1").subscribe((programs) => {
+      expect(programs).toBeTruthy();
+      expect(programs.length).toBeGreaterThan(0);
+    });
+  }));
+
+  it('Testing getProgram', inject([QuestionService], (service: QuestionService) => {
+    expect(service).toBeTruthy();
+
+    service.getProgram("Q2","2").subscribe((programs) => {
+      expect(programs).toBeFalsy();
+    });
+  }));
+
 });
 
