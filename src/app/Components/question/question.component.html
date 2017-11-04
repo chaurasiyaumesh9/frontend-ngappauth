@@ -56,15 +56,18 @@
 									</div>
 									
 									<div *ngIf="question.q_type == 'textarea' ">
-										<textarea name="" id="" cols="30" rows="10"></textarea>
+										<textarea class="form-control" name="" id="" cols="30" rows="10" placeholder="{{question.placeholder_title}}"></textarea>
 									</div>
 									<div *ngIf="question.q_type == 'text' ">
-										<input type="text" class="form-control">
+										<input type="text" class="form-control" placeholder="{{question.placeholder_title}}">
 									</div>
 									<div *ngIf="question.q_type == 'dropdown' ">
-										<select name="options_{{question.q_id}}" id="options_{{question.q_id}}" (change)="loadDependentQuestions($event)" [ngModel] = savedReponses[question.q_id]>
+										<div class="dropdown">
+											<select name="options_{{question.q_id}}" id="options_{{question.q_id}}" (change)="loadDependentQuestions($event)" [ngModel] = savedReponses[question.q_id]>
 											<option [value]="option.opt_value" *ngFor = "let option of question.q_options" >  {{option.opt_text}} </option>
 										</select>
+										</div>
+										
 									</div>
 								</div>
 							</div>

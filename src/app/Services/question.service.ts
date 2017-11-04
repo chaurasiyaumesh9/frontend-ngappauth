@@ -17,6 +17,8 @@ export class QuestionService {
     private _url: string = "/assets/config.json";
     constructor(private _http: Http) {}
 
+    
+
     getAllQuestions() {
         return this._http.get(this._url).map((response: Response) => {
             let _response = response.json();

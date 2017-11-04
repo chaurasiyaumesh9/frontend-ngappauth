@@ -71,6 +71,10 @@ export class QuestionComponent implements OnInit {
             this._questionService.getQuestionsByProgramId(programs[0]).subscribe(questions => {
             //  console.log('questions :',questions);
               this.questions = this.globalQuestions.concat(questions);
+
+              this.questions = this.questions.sort(function(a, b) {
+                  return parseInt(a.rank) - parseInt(b.rank);
+              });
             });
           }
         });
