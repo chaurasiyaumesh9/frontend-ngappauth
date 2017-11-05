@@ -59,7 +59,7 @@
 										<textarea class="form-control" name="" id="" cols="30" rows="10" placeholder="{{question.placeholder_title}}"></textarea>
 									</div>
 									<div *ngIf="question.q_type == 'text' ">
-										<input type="text" class="form-control" placeholder="{{question.placeholder_title}}">
+										<input type="text" class="form-control" placeholder="{{question.placeholder_title}}" name="{{question.q_id}}" [ngModel] = savedReponses[question.q_id]>
 									</div>
 									<div *ngIf="question.q_type == 'dropdown' ">
 										<div class="dropdown">
@@ -74,6 +74,10 @@
 						</td>
 					</tr>
 				</table>
+
+				<div class="button-set" *ngIf="showContinue">
+					<input  id="btn-continue" type="submit" value="Continue" (click)="submitAndSaveResponse()">
+				</div>
 			</form>
 		</div>
 		
