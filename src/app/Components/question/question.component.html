@@ -56,10 +56,21 @@
 									</div>
 									
 									<div *ngIf="question.q_type == 'textarea' ">
-										<textarea class="form-control" name="" id="" cols="30" rows="10" placeholder="{{question.placeholder_title}}"></textarea>
+										<textarea required maxlength="10" class="form-control" name="" id="" cols="30" rows="10" placeholder="{{question.placeholder_title}}"></textarea>
 									</div>
 									<div *ngIf="question.q_type == 'text' ">
-										<input type="text" class="form-control" placeholder="{{question.placeholder_title}}" name="{{question.q_id}}" [ngModel] = savedReponses[question.q_id]>
+										<input required minlength="4" type="text" class="form-control" placeholder="{{question.placeholder_title}}" (ngModelChange)="valuechange($event)" name="{{question.q_id}}" id="{{question.q_id}}" [ngModel] = savedReponses[question.q_id] #name="ngModel">
+
+										<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+
+										  <div *ngIf="name.errors.required">
+										    Name is required.
+										  </div>
+										  <div *ngIf="name.errors.minlength">
+										    Name must be at least 4 characters long.
+										  </div>
+										 
+										</div>
 									</div>
 									<div *ngIf="question.q_type == 'dropdown' ">
 										<div class="dropdown">
@@ -75,8 +86,8 @@
 					</tr>
 				</table>
 
-				<div class="button-set" *ngIf="showContinue">
-					<input  id="btn-continue" type="submit" value="Continue" (click)="submitAndSaveResponse()">
+				<div class="button-set" >
+					<input  id="btn-continue" class="{{showContinue?'':'disabled'}}" type="submit" value="Continue" (click)="submitAndSaveResponse()">
 				</div>
 			</form>
 		</div>

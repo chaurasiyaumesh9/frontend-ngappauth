@@ -146,12 +146,18 @@ select {
 }
 
 #btn-continue{
-	background:orange;
+	background:#FF5738;
 	color:#fff;
 	display: block;
 	margin: 0 auto;
-	max-width: 210px;
+	width: 150px;
+	line-height: 50px;
 	border:0 none;
 	padding:5px 15px;
 	cursor:pointer;
+	font-family: 'Open Sans', sans-serif;
+}
+
+#btn-continue.disabled{
+	pointer-events:none;
 }
