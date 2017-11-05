@@ -16,6 +16,7 @@ export class QuestionComponent implements OnInit {
   globalQuestions = [];
   visibleQuestions = [];
   savedReponses = {};
+  showContinue = false;
 
   private _prevSelected: any;
 
@@ -39,14 +40,19 @@ export class QuestionComponent implements OnInit {
         }
         return false;
     }
+
+    toggleContinue(){
+      var size = Object.keys(this.savedReponses).length;
+
+      if (size>0) {this.showContinue = true}else{this.showContinue = false;};
+    }
+
+    submitAndSaveResponse(){
+      
+    }
     loadDependentQuestions(evt) {
       let target = evt.target;
-      //console.log('handleChange ',target.id.split('_'));
-       // this._questionService.getQuestionsMultipleProgramIds(['P3','P4','P5']).subscribe(questions => {
-       //    console.log('questions :',questions);
-          
-       //  });
-
+      
       let question_id,answer_id;
       if (target.nodeName.toLowerCase() == "input") {
           question_id = target.id.split('_')[1];
@@ -70,6 +76,14 @@ export class QuestionComponent implements OnInit {
           if( programs && programs.length > 0 ){
             this._questionService.getQuestionsByProgramId(programs[0]).subscribe(questions => {
             //  console.log('questions :',questions);
+
+              for( let k=0;k<questions.length;k++){
+                if (question_id !== questions[k]['q_id']) {
+                  this.savedReponses[questions[k]['q_id']] = "-1";
+                };
+                
+                
+              }
               this.questions = this.globalQuestions.concat(questions);
 
               this.questions = this.questions.sort(function(a, b) {
@@ -79,7 +93,7 @@ export class QuestionComponent implements OnInit {
           }
         });
       };
-      
+      this.toggleContinue();
       
     }
 
