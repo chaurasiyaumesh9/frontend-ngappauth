@@ -48,8 +48,23 @@ export class QuestionComponent implements OnInit {
     }
 
     submitAndSaveResponse(){
-      
+      console.log('submitAndSaveResponse : ',this.savedReponses);
     }
+
+    // valuechange( evt ){
+    //   debugger;
+    //   let target = evt.target;
+    //   let question_id;
+    //   if (target.nodeName.toLowerCase() == "input") {
+    //       question_id = target.id.split('_')[1];
+    //   }
+    //   let response = {
+    //     "q_id": question_id,
+    //     "response": target.value
+    //   };
+    //   //console.log('response : ',response);
+    //   this.saveResponses( response );
+    // }
     loadDependentQuestions(evt) {
       let target = evt.target;
       
