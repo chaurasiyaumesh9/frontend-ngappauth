@@ -17,6 +17,7 @@ export class QuestionComponent implements OnInit {
   visibleQuestions = [];
   savedReponses = {};
   showContinue = false;
+  
 
   private _prevSelected: any;
 
@@ -49,6 +50,14 @@ export class QuestionComponent implements OnInit {
 
     submitAndSaveResponse(){
       console.log('submitAndSaveResponse : ',this.savedReponses);
+    }
+
+    saveIt(newValue, qid){
+      this.savedReponses[qid] = newValue;
+      console.log('this.savedReponses : ',this.savedReponses);
+    }
+    clearValidationMessages(){
+
     }
 
     loadDependentQuestions(evt) {
@@ -96,7 +105,7 @@ export class QuestionComponent implements OnInit {
         });
       };
       this.toggleContinue();
-      
+      console.log('this.savedReponses : ',this.savedReponses);
     }
 
 
@@ -104,21 +113,25 @@ export class QuestionComponent implements OnInit {
 
   	 this._questionService.getAllQuestions()
   	 .subscribe(resQuestionData => {
-      //this.questions = resQuestionData
-      for(let i=0;i<resQuestionData.length;i++){
-        let question = resQuestionData[i];
-        if (question.q_type.toLowerCase() == "dropdown") {
-          this.savedReponses[question['q_id']] = "-1";
-        };
+      this.questions = resQuestionData
+      // for(let i=0;i<resQuestionData.length;i++){
+      //   let question = resQuestionData[i];
+      //   if (question.q_type.toLowerCase() == "dropdown") {
+      //     this.savedReponses[question['q_id']] = "-1";
+      //   }
+      //   if (question.q_type.toLowerCase() == "textarea" || question.q_type.toLowerCase() == "text") {
+      //     this.savedReponses[question['q_id']] = "";
+      //   }
+
         
-      }
+      // }
      });
 
-    this._questionService.getQuestionByScope('global')
-    .subscribe(resQuestionData => {
-      this.globalQuestions = resQuestionData;
-      this.questions = this.globalQuestions;
-    });
+    // this._questionService.getQuestionByScope('global')
+    // .subscribe(resQuestionData => {
+    //   this.globalQuestions = resQuestionData;
+    //   this.questions = this.globalQuestions;
+    // });
     
 
 
