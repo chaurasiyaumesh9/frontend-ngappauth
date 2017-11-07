@@ -51,20 +51,6 @@ export class QuestionComponent implements OnInit {
       console.log('submitAndSaveResponse : ',this.savedReponses);
     }
 
-    // valuechange( evt ){
-    //   debugger;
-    //   let target = evt.target;
-    //   let question_id;
-    //   if (target.nodeName.toLowerCase() == "input") {
-    //       question_id = target.id.split('_')[1];
-    //   }
-    //   let response = {
-    //     "q_id": question_id,
-    //     "response": target.value
-    //   };
-    //   //console.log('response : ',response);
-    //   this.saveResponses( response );
-    // }
     loadDependentQuestions(evt) {
       let target = evt.target;
       
@@ -94,10 +80,11 @@ export class QuestionComponent implements OnInit {
 
               for( let k=0;k<questions.length;k++){
                 if (question_id !== questions[k]['q_id']) {
-                  this.savedReponses[questions[k]['q_id']] = "-1";
+                  if (questions[k].q_type.toLowerCase() == "dropdown") {
+                    this.savedReponses[questions[k]['q_id']] = "-1";
+                  };
+                  
                 };
-                
-                
               }
               this.questions = this.globalQuestions.concat(questions);
 
