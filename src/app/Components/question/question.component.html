@@ -56,7 +56,7 @@
 									</div>
 									
 									<div *ngIf="question.q_type == 'textarea' ">
-										<textarea required pattern="^[\w\s-]+$" class="form-control" name="{{question.q_id}}" id="" cols="30" rows="10" placeholder="{{question.placeholder_title}}" [ngModel] = savedReponses[question.q_id] #description="ngModel"></textarea>
+										<textarea (ngModelChange)="saveIt($event,question.q_id)" required pattern="^[\w\s-]+$" class="form-control" name="{{question.q_id}}" id="" cols="30" rows="10" placeholder="{{question.placeholder_title}}" [ngModel] = savedReponses[question.q_id] #description="ngModel"></textarea>
 
 										<div class="errors" *ngIf="description.invalid && (description.dirty || description.touched)" >
 
@@ -75,13 +75,15 @@
 										</div>
 									</div>
 									<div class="error" *ngIf="question.q_type == 'text' ">
-										<input required type="text" class="form-control" placeholder="{{question.placeholder_title}}" name="{{question.q_id}}" id="{{question.q_id}}" [ngModel] = savedReponses[question.q_id] #name="ngModel">
+										<input (ngModelChange)="saveIt($event,question.q_id)" required type="text" class="form-control" placeholder="{{question.placeholder_title}}" name="{{question.q_id}}" id="{{question.q_id}}" [ngModel] = savedReponses[question.q_id] #toolLink="ngModel">
 
-										<div class="errors" *ngIf="name.invalid && (name.dirty || name.touched)" >
-
-										  <div class="error" *ngIf="name.errors.required">
+										<div class="errors" *ngIf="toolLink.invalid && (toolLink.dirty || toolLink.touched)" >
+											<div  class="error" *ngIf="toolLink.errors.required">
 										    *This field is required.
 										  </div>
+										  <!-- <div class="error" *ngIf="toolLink.errors.required">
+										    *This field is required.
+										  </div> -->
 										  <!-- <div *ngIf="name.errors.minlength">
 										    Name must be at least 4 characters long.
 										  </div> -->
