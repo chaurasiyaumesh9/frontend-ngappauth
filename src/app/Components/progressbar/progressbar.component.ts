@@ -9,11 +9,13 @@ export class ProgressbarComponent implements OnInit {
 	
 	ActiveStep: number;
 	TotalSteps: number;
+  Percent: number;
 	fakeArray = [];
   
   constructor() { 
-  	this.ActiveStep = 1; //considering starts from 0
+  	this.ActiveStep = 2; //considering starts from 0
   	this.TotalSteps = 4;
+    this.Percent = (100/this.TotalSteps) * this.ActiveStep;
 
   	this.fakeArray = new Array(4);
   }
