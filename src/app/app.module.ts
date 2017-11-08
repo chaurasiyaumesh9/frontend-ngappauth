@@ -6,11 +6,15 @@ import { QuestionService } from './Services/question.service';
 
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './Components/question/question.component';
+import { UserdetailsComponent } from './Components/userdetails/userdetails.component';
+import { ProgressbarComponent } from './Components/progressbar/progressbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent
+    QuestionComponent,
+    UserdetailsComponent,
+    ProgressbarComponent
   ],
   imports: [
     BrowserModule,
