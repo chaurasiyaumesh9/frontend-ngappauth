@@ -23,7 +23,7 @@ export class QuestionService {
         return this._http.get(this._url).map((response: Response) => {
             let _response = response.json();
             //console.log('_response : ',_response.configuration.programs[0]['questions']);
-            return _response.programs.Group.Questions;
+            return _response.questions;
             //response.json();
             //return [];
         });

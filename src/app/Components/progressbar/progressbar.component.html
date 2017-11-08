@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="fill-content">
+			<ul class="progress-bar">
+				<li *ngFor="let a of fakeArray; let index = index" class="{{ActiveStep==index?'active':''}}">
+					<div class="dot"></div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

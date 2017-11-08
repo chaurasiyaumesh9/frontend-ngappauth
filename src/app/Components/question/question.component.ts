@@ -111,27 +111,27 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
 
-  	 this._questionService.getAllQuestions()
-  	 .subscribe(resQuestionData => {
-      this.questions = resQuestionData
-      // for(let i=0;i<resQuestionData.length;i++){
-      //   let question = resQuestionData[i];
-      //   if (question.q_type.toLowerCase() == "dropdown") {
-      //     this.savedReponses[question['q_id']] = "-1";
-      //   }
-      //   if (question.q_type.toLowerCase() == "textarea" || question.q_type.toLowerCase() == "text") {
-      //     this.savedReponses[question['q_id']] = "";
-      //   }
+     this._questionService.getAllQuestions()
+     .subscribe(resQuestionData => {
+      //this.questions = resQuestionData
+      for(let i=0;i<resQuestionData.length;i++){
+        let question = resQuestionData[i];
+        if (question.q_type.toLowerCase() == "dropdown") {
+          this.savedReponses[question['q_id']] = "-1";
+        }
+        if (question.q_type.toLowerCase() == "textarea" || question.q_type.toLowerCase() == "text") {
+          this.savedReponses[question['q_id']] = "";
+        }
 
         
-      // }
+      }
      });
 
-    // this._questionService.getQuestionByScope('global')
-    // .subscribe(resQuestionData => {
-    //   this.globalQuestions = resQuestionData;
-    //   this.questions = this.globalQuestions;
-    // });
+    this._questionService.getQuestionByScope('global')
+    .subscribe(resQuestionData => {
+      this.globalQuestions = resQuestionData;
+      this.questions = this.globalQuestions;
+    });
     
 
 
