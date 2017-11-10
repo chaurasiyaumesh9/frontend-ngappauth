@@ -10,19 +10,26 @@ import { QuestionComponent } from './Components/question/question.component';
 import { UserdetailsComponent } from './Components/userdetails/userdetails.component';
 import { ProgressbarComponent } from './Components/progressbar/progressbar.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     QuestionComponent,
     UserdetailsComponent,
-    ProgressbarComponent
+    ProgressbarComponent  
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    ReactiveFormsModule    
+    ReactiveFormsModule   ,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule
   ],
+  exports: [MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule],
   providers: [ QuestionService, UserdetailsService ],
   bootstrap: [ AppComponent ]
 })
