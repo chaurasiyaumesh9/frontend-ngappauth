@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { QuestionService } from './Services/question.service';
+import { UserdetailsService } from './Services/userdetails.service';
 
 import { AppComponent } from './app.component';
 import { QuestionComponent } from './Components/question/question.component';
@@ -22,7 +23,7 @@ import { ProgressbarComponent } from './Components/progressbar/progressbar.compo
     FormsModule,
     ReactiveFormsModule    
   ],
-  providers: [ QuestionService ],
+  providers: [ QuestionService, UserdetailsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
